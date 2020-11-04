@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<!--
+*****************************************************************************
+Title: Accessibility Simulator Dyslexia Home
+Use: Dyslexia Intro
+Author: Roshni Choudhary
+School/Term: Southern Illinois University, Fall 2020
+Developed: Oct 13, 2020
+Tested: Oct 13, 2020; Passed on Firefox, Chrome, and Safari browsers.
+******************************************************************************
+-->
+<html lang="en-US">
+<head>
+        <meta charset="utf-8">
+        <meta name="description" content="Accessibility Simulator Home Page">
+        <meta name="keywords" content="simulator, disability, design, user experience design, ux design, ui design, ux/ui, accessibility, inclusion, WCAG">
+        <link rel="stylesheet" href="../style.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    
+    <script src="../resources/speak.js-master/speakClient.js"></script>
+    
+   
+        <title> Blindness Task</title>
+</head>
+<body>
+     <script>
+    var homeNav=document.getElementById('navhome');
+   
+   
+   if (document.activeElement===homeNav)
+    {
+        var fs = require('fs');
+        var audio = new Audio("../resources/bensound");
+        audio.play();
+        var msg = new SpeechSynthesisUtterance('Hello World');
+        window.speechSynthesis.cancel();		  
+        window.speechSynthesis.speak(msg);		
+        
+    }
+    
+    </script>
+
+    <a href="../index.htm">
+    <img id="logo" src="../resources/logo.png" alt="Accessibility Simulator Logo">
+    </a>    
+    
+    
+    <a href="../index.htm">
+    <img id="homeicon" src="../resources/home%20icon@3x.png"  alt="Home Icon">
+    <p id=homemenutext href="../in"> Home</p>
+    </a>
+    
+    <a href="dyslexia.htm" class="current">
+    <img id="taskicon" src="../resources/task-icon.png" href="dyslexia.htm" alt="Task Help Icon">   
+    <p id=taskmenutext> Task Help</p>
+    </a>
+    
+    
+    <div id=body>
+    <nav>
+        
+        <ul>
+            <div id="audio">
+            <li><a href="index.htm" class="current" id="navhome" onfocus="speak('I am awesome')">Home</a></li>
+            </div>
+            
+            
+            <li><a href="sales.htm">About Us</a></li>
+            <li><a href="rentals.htm">Disability Types</a></li> 
+            <li><a href="services.htm">Contact Us</a></li> 
+        </ul> 
+        
+    </nav>
+    
+        
+    <h1 tabindex="0"> Welcome to the Disabilities Empathy Website</h1>
+    <p tabindex="0">
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eu turpis volutpat, sodales enim eu, elementum justo. In hac habitasse platea dictumst. Etiam et lorem aliquam libero pulvinar ornare. Cras malesuada ligula nulla, id feugiat enim mattis vel. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Maecenas iaculis maximus mi, id mattis tortor luctus ac. Cras in ornare eros. Pellentesque eu ligula gravida, vehicula urna quis, mollis dolor. Fusce et risus elit.
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eu turpis volutpat, sodales enim eu, elementum justo. In hac habitasse platea dictumst. Etiam et lorem aliquam libero pulvinar ornare. Cras malesuada ligula nulla, id feugiat enim mattis vel. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Maecenas iaculis maximus mi, id mattis tortor luctus ac. Cras in ornare eros. Pellentesque eu ligula gravida, vehicula urna quis, mollis dolor. Fusce et risus elit.
+    </p>    
+    </div>
+    
+    
+    <script>
+    var homeNav=document.getElementById('navhome');
+   
+   
+   if (document.activeElement===homeNav)
+    {
+        var fs = require('fs');
+        var audio = new Audio("../resources/bensound");
+        audio.play();
+        var msg = new SpeechSynthesisUtterance('Hello World');
+        window.speechSynthesis.cancel();		  
+        window.speechSynthesis.speak(msg);		
+        
+    }
+    
+    </script>
+    
+     <script src="../resources/speak.js-master/speakClient.js"></script>
+    
+    
+    </body>

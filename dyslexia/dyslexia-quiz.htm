@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<!--
+*****************************************************************************
+Title: Accessibility Simulator Dyslexia Quiz
+Use: Dyslexia Intro
+Author: Roshni Choudhary
+School/Term: Southern Illinois University, Fall 2020
+Developed: Oct 13, 2020
+Tested: Oct 13, 2020; Passed on Firefox, Chrome, and Safari browsers.
+******************************************************************************
+-->
+<html lang="en-US">
+<head>
+        <meta charset="utf-8">
+        <meta name="description" content="Accessibility Simulator Dyslexia Quiz">
+        <meta name="keywords" content="simulator, disability, design, user experience design, ux design, ui design, ux/ui, accessibility, inclusion, WCAG">
+        <link rel="stylesheet" href="../style.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+        </script>
+    <script> 
+    
+    var questions = [{
+    question: "1. What type of disability is Dyslexia?",
+    choices: ["Cognitive", "Physical", "Visual", "Learning"],
+    correctAnswer: 3
+}, {
+    question: "2. What is the meaning of life?",
+    choices: ["Answer 1", "Answer 2", "Answer 3", "Answer 4"],
+    correctAnswer: 2
+}, {
+    question: "3. Who are you?",
+    choices: ["Answer 1", "Answer 2", "Answer 3", "Answer 4"],
+    correctAnswer: 1
+}, {
+    question: "Why are you awesome?",
+    choices: ["idk", "lol", "yes", "no"],
+    correctAnswer: 0
+}, {
+    question: "Why are you awesome?",
+    choices: ["idk", "lol", "yes", "no"],
+    correctAnswer: 0
+}];
+
+
+var currentQuestion = 0;
+var currentQuestions = 1;
+var viewingAns = 0;
+var correctAnswers = 0;
+var quizOver = false;
+var iSelectedAnswer = [];
+	var c=120;
+	var t;
+$(document).ready(function () 
+{
+    // Display the first question
+    displayCurrentQuestion();
+    $(this).find(".quizMessage").hide();
+    $(this).find(".preButton").attr('disabled', 'disabled');
+	
+	timedCount();
+   $('#numofq').html("Question 1 of " + questions.length);
+	$(this).find(".preButton").on("click", function () 
+	{		
+		
+        if (!quizOver) 
+		{
+			if(currentQuestion == 0) { return false; }
+	
+			if(currentQuestion == 1) {
+			  $(".preButton").attr('disabled', 'disabled');
+			}
+			
+				currentQuestion--; // Since we have already displayed the first question on DOM ready
+				if (currentQuestion < questions.length) 
+				{
+					displayCurrentQuestion();
+					
+				} 					
+		} else {
+			if(viewingAns == 3) { return false; }
+			currentQuestion = 0; viewingAns = 3;
+			viewResults();		
+		}
+    });
+
+	
+	// On clicking next, display the next question
+    $(this).find(".nextButton").on("click", function () 
+	{
+        if (!quizOver) 
+		{
+			
+            var val = $("input[type='radio']:checked").val();
+
+            if (val == undefined) 
+			{
+                $(document).find(".quizMessage").text("Please select an answer");
+                $(document).find(".quizMessage").show();
+            } 
+			else 
+			{
+                // TODO: Remove any message -> not sure if this is efficient to call this each time....
+                $(document).find(".quizMessage").hide();
+				if (val == questions[currentQuestion].correctAnswer) 
+				{
+					correctAnswers++;
+				}
+				iSelectedAnswer[currentQuestion] = val;
+				
+				currentQuestion++; // Since we have already displayed the first question on DOM ready
+                currentQuestions++;
+                 $('#numofq').html("Question " + currentQuestions + " of " + questions.length);
+	
+                
+				if(currentQuestion >= 1) {
+					  $('.preButton').prop("disabled", false);
+				}
+				if (currentQuestion < questions.length) 
+				{
+					displayCurrentQuestion();
+					
+				} 
+				else 
+				{
+					displayScore();
+                    
+                    $('#numofq').html("Question 5 of 5");
+					$('#iTimeShow').html('Quiz Time Completed!');
+					$('#timer').html("You scored: " + correctAnswers + " out of: " + questions.length);
+					c=185;
+					$(document).find(".preButton").text("View Answer");
+					$(document).find(".nextButton").text("Try Again");
+					quizOver = true;
+					return false;
+					
+				}
+			}
+					
+		}	
+		else 
+		{ // quiz is over and clicked the next button (which now displays 'Play Again?'
+            
+			quizOver = false; $('#iTimeShow').html('Time Remaining:'); iSelectedAnswer = [];
+			$(document).find(".nextButton").text("Next Question");
+			$(document).find(".preButton").text("Previous Question");
+			 $(".preButton").attr('disabled', 'disabled');
+			resetQuiz();
+			viewingAns = 1;
+			displayCurrentQuestion();
+			hideScore();
+		}
+    });
+});
+
+
+
+function timedCount()
+	{
+		if(c == 185) 
+		{ 
+			return false; 
+		}
+		
+		var hours = parseInt( c / 3600 ) % 24;
+		var minutes = parseInt( c / 60 ) % 60;
+		var seconds = c % 60;
+		var result = (hours < 10 ? "0" + hours : hours) + ":" + (minutes < 10 ? "0" + minutes : minutes) + ":" + (seconds  < 10 ? "0" + seconds : seconds);            
+		$('#timer').html(result);
+		
+		if(c == 0 )
+		{
+					displayScore();
+					$('#iTimeShow').html('Quiz Time Completed!');
+					$('#timer').html("You scored: " + correctAnswers + " out of: " + questions.length);
+					c=185;
+					$(document).find(".preButton").text("View Answer");
+					$(document).find(".nextButton").text("Play Again?");
+					quizOver = true;
+					return false;
+					
+		}
+		
+		/*if(c == 0 )
+		{	
+			if (!quizOver) 
+			{
+				var val = $("input[type='radio']:checked").val();
+            	if (val == questions[currentQuestion].correctAnswer) 
+				{
+					correctAnswers++;
+				}
+				currentQuestion++; // Since we have already displayed the first question on DOM ready
+				
+				if (currentQuestion < questions.length) 
+				{
+					displayCurrentQuestion();
+					c=15;
+				} 
+				else 
+				{
+					displayScore();
+					$('#timer').html('');
+					c=16;
+					$(document).find(".nextButton").text("Play Again?");
+					quizOver = true;
+					return false;
+				}
+			}
+			else 
+			{ // quiz is over and clicked the next button (which now displays 'Play Again?'
+				quizOver = false;
+				$(document).find(".nextButton").text("Next Question");
+				resetQuiz();
+				displayCurrentQuestion();
+				hideScore();
+			}		
+		}	*/
+		c = c - 1;
+		t = setTimeout(function()
+		{
+			timedCount()
+		},1000);
+	}
+	
+	
+// This displays the current question AND the choices
+function displayCurrentQuestion() 
+{
+
+	if(c == 185) { c = 180; timedCount(); }
+    //console.log("In display current Question");
+    var question = questions[currentQuestion].question;
+    var questionClass = $(document).find(".quizContainer > .question");
+    var choiceList = $(document).find(".quizContainer > .choiceList");
+    var numChoices = questions[currentQuestion].choices.length;
+    // Set the questionClass text to the current question
+    $(questionClass).text(question);
+    // Remove all current <li> elements (if any)
+    $(choiceList).find("li").remove();
+    var choice;
+	
+	
+    for (i = 0; i < numChoices; i++) 
+	{
+        choice = questions[currentQuestion].choices[i];
+		
+		if(iSelectedAnswer[currentQuestion] == i) {
+			$('<li><input type="radio" class="radio-inline" checked="checked"  value=' + i + ' name="dynradio" />' +  ' ' + choice  + '</li>').appendTo(choiceList);
+		} else {
+			$('<li><input type="radio" class="radio-inline" value=' + i + ' name="dynradio" />' +  ' ' + choice  + '</li>').appendTo(choiceList);
+		}
+    }
+}
+
+function resetQuiz()
+{
+    currentQuestion = 0;
+    correctAnswers = 0;
+    hideScore();
+}
+
+function displayScore()
+{
+    $(document).find(".quizContainer > .result").text("You scored: " + correctAnswers + " out of: " + questions.length);
+    $(document).find(".quizContainer > .result").show();
+}
+
+function hideScore() 
+{
+    $(document).find(".result").hide();
+}
+
+// This displays the current question AND the choices
+function viewResults() 
+{
+
+	if(currentQuestion == 10) { currentQuestion = 0;return false; }
+	if(viewingAns == 1) { return false; }
+
+	hideScore();
+    var question = questions[currentQuestion].question;
+    var questionClass = $(document).find(".quizContainer > .question");
+    var choiceList = $(document).find(".quizContainer > .choiceList");
+    var numChoices = questions[currentQuestion].choices.length;
+    // Set the questionClass text to the current question
+    $(questionClass).text(question);
+    // Remove all current <li> elements (if any)
+    $(choiceList).find("li").remove();
+    var choice;
+	
+	
+	for (i = 0; i < numChoices; i++) 
+	{
+        choice = questions[currentQuestion].choices[i];
+		
+		if(iSelectedAnswer[currentQuestion] == i) {
+			if(questions[currentQuestion].correctAnswer == i) {
+				$('<li style="border:2px solid green;margin-top:10px;"><input type="radio" class="radio-inline" checked="checked"  value=' + i + ' name="dynradio" />' +  ' ' + choice  + '</li>').appendTo(choiceList);
+			} else {
+				$('<li style="border:2px solid red;margin-top:10px;"><input type="radio" class="radio-inline" checked="checked"  value=' + i + ' name="dynradio" />' +  ' ' + choice  + '</li>').appendTo(choiceList);
+			}
+		} else {
+			if(questions[currentQuestion].correctAnswer == i) {
+				$('<li style="border:2px solid green;margin-top:10px;"><input type="radio" class="radio-inline" value=' + i + ' name="dynradio" />' +  ' ' + choice  + '</li>').appendTo(choiceList);
+			} else {
+				$('<li><input type="radio" class="radio-inline" value=' + i + ' name="dynradio" />' +  ' ' + choice  + '</li>').appendTo(choiceList);
+			}
+		}
+    }
+	
+	currentQuestion++;
+	
+	setTimeout(function()
+		{
+			viewResults();
+		},3000);
+}
+
+    
+    
+    
+    </script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <title> Dyslexia Quiz</title>
+</head>
+    
+    
+    
+    
+    
+    
+    
+<body>
+
+    <a href="../index.htm">
+    <img id="logo" src="../resources/logo.png" alt="Accessibility Simulator Logo">
+    </a>    
+    
+    
+    <a href="../index.htm">
+    <img id="homeicon" src="../resources/home%20icon@3x.png"  alt="Home Icon">
+    <p id=homemenutext href="../in"> Home</p>
+    </a>
+    
+          
+
+ 
+    <div id="body">
+            
+        
+        
+     <!--   
+        <h1> Chapter Quiz</h1>
+   <form>
+    <h3>What is the meaning of life?</h3>
+    <input type="radio" name="gender" value="q1a1">
+    <label class="answer">Answer 1</label><br>
+    <input type="radio" class="answer" name="gender" value="q1a2">
+    <label class="answer">Answer 2</label><br>
+    <input type="radio" class="answer" name="gender" value="q1a2">
+    <label class="answer">Other</label>
+     
+    <br>  
+       
+    <h3>What is the meaning of life?</h3>
+    <input type="radio" name="gender" value="q1a1">
+    <label class="answer">Answer 1</label><br>
+    <input type="radio" class="answer" name="gender" value="q1a2">
+    <label class="answer">Answer 2</label><br>
+    <input type="radio" class="answer" name="gender" value="q1a2">
+    <label class="answer">Other</label>   
+
+  <br>  
+
+    <h3>Who are you?</h3>
+    <input type="radio" class="answer" name="age" value="30">
+    <label class="answer">0 - 30 <span class="checkmark"></span></label><br>
+    <input type="radio" class="answer" name="age" value="60">
+    <label class="answer">31 - 60</label><br>  
+    <input type="radio" id="age3" name="age" value="100">
+    <label class="answer">61 - 100</label><br><br> 
+   </form>
+        
+        
+        
+    <div id="buttons">
+    <a href="dyslexia-quiz.htm" id="button">Submit</a>
+    </div>
+
+    -->
+        
+        
+         <div class="quizContainer container-fluid well well-lg">
+        <div id="quiz1" class="text-center">
+             <h4 id="time" ><span id="iTimeShow">Time Remaining: </span><br/><span id='timer'></span></h4>
+         <h1>Dyslexia Quiz</h1>
+            
+
+		</div>
+            <progress value="20" max="100" id=p1></progress>   
+            
+            <script language=JavaScript>
+                <!--
+                    function incr() {
+                    var v1=document.getElementById('p1').value;
+                    document.getElementById("p1").value= v1 + 16.7;
+                }
+                //-->
+            </script>
+            <h4 ><span id="numofq"></span></h4>
+
+            
+        
+                 
+		
+        <div class="question"></div>
+        <ul class="choiceList"></ul>
+       <div class="quizMessage"> <p id="message"></p></div>
+        <div class="result"></div>
+
+		<button class="preButton">Back</button>
+        <button class="nextButton" value='Increse' onClick='incr();'>Next</button>
+            
+        </div>
+    
+    </div>
+    
+      
+
+</body>
+</html>
