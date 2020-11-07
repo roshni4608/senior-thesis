@@ -274,8 +274,42 @@ input[type=radio] {
 }
 /* End of Quiz Classes */
 
+/* ----------------BLINDNESS OVERLAY-----------------------*/
+.blindnessOverlay
+{
+  height: 1000px;
+  width: 1000px;
+  background-color: black;
+   color:black;
+    position: fixed;
+    opacity:0;
+}
+
+.blindnessNav
+{
+   color:black; 
+}
+
+a{
+    color:black;
+    text-decoration:none;
+}
+
+/* ----------------SCREENREADER INSTRUCTIONS IMAGES-----------------------*/
 
 
+#voiceoverIcon{
+    width:20%;
+    margin:auto;
+    display:block;
+}
+
+
+#imgstep1{
+    width:100%;
+    margin:auto;
+    display:block;
+}
 
 
 /* ----------------PROGRESS BAR-----------------------*/
