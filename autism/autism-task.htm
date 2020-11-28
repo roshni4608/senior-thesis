@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<!--
+*****************************************************************************
+Title: Accessibility Simulator Dyslexia Task
+Use: Dyslexia Task
+Author: Roshni Choudhary
+School/Term: Southern Illinois University, Fall 2020
+Developed: Oct 13, 2020
+Tested: Oct 13, 2020; Passed on Firefox, Chrome, and Safari browsers.
+******************************************************************************
+-->
+<html lang="en-US">
+<head>
+        <meta charset="utf-8">
+        <meta name="description" content="Accessibility Simulator Home Page">
+        <meta name="keywords" content="simulator, disability, design, user experience design, ux design, ui design, ux/ui, accessibility, inclusion, WCAG">
+        <link rel="stylesheet" href="../style.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title> Autism Task </title>
+    
+      <script>
+                function customAlert(msg,duration)
+                {
+                 var styler = document.createElement("img");
+                  styler.setAttribute("style",
+                                      "width:30%;margin-left:-40%;margin-top:10%;float:left;z-index:10000");
+                    styler.setAttribute("src", "../resources/coca-cola-ad.png")
+                    
+                 styler.innerHTML = "<img>"+msg+"</img>";
+                 setTimeout(function()
+                 {
+                   styler.parentNode.removeChild(styler);
+                 },duration);
+                 document.body.appendChild(styler);
+                }
+                  function caller()
+                  {
+                    
+                    customAlert("This custom alert box will be closed in 5 seconds","30000"); 
+                  }
+                    setTimeout(function(){caller();},4000);
+          
+          
+          
+          function winterAdAdd(msg,duration)
+                {
+                 var winterAd = document.createElement("img");
+                  winterAd.setAttribute("style",
+                                      "width:25%;margin-left:-20%;margin-top:50%;z-index:20000");
+                    winterAd.setAttribute("src", "../resources/estateAd.png")
+                    
+                 winterAd.innerHTML = "<img>"+msg+"</img>";
+                 setTimeout(function()
+                 {
+                   winterAd.parentNode.removeChild(winterAd);
+                 },duration);
+                 document.body.appendChild(winterAd);
+                }
+                  function winterAddSee()
+                  {
+                    
+                    winterAdAdd("This custom alert box will be closed in 5 seconds","30000"); 
+                  }
+                  setTimeout(function(){winterAddSee();},300);
+          
+          
+          
+          
+          
+          
+          
+          function spriteVideo (msg,duration)
+                {
+                 var spritevid = document.createElement('video');
+                    
+            
+                  spritevid.setAttribute("style",
+                                      "width:30%;margin-left:-20%;margin-top:30%;float:left;");
+                    spritevid.setAttribute("src", "../resources/giphy.mp4")
+                    spritevid.src = '../resources/giphy.mp4';
+                    spritevid.autoplay = true;
+                    spritevid.loop = true;
+                    
+                 spritevid.innerHTML = "<img>"+msg+"</img>";
+                 setTimeout(function()
+                 {
+                   spritevid.parentNode.removeChild(spritevid);
+                 },duration);
+                 document.body.appendChild(spritevid);
+                }
+          
+           function spriteCaller()
+                  {
+                    
+                    spriteVideo("This custom alert box will be closed in 5 seconds","30000"); 
+                  }
+                  setTimeout(function(){spriteCaller();},10000);
+          
+          
+          
+          
+          
+          
+        </script>
+    
+    
+</head>
+<body id="autismBody">
+
+    <a href="../index.htm">
+    <img id="logo" src="../resources/logo.png" alt="Accessibility Simulator Logo">
+    </a>    
+    
+    
+    <a href="../index.htm">
+    <img id="homeicon" src="../resources/home%20icon@3x.png"  alt="Home Icon">
+    <p id=homemenutext href="../in"> Home</p>
+    </a>
+    
+    <a href="#popup1" class="current">
+    <img id="taskicon" src="../resources/task-icon.png" href="dyslexia.htm" alt="Task Help Icon">   
+    <p id=taskmenutext> Task Help</p>
+    </a> 
+ 
+    <div id="popup1" class="overlay">
+	<div class="popup">
+		<h2>Your Autism Task</h2>
+		<a class="close" href="#">&times;</a>
+		<div class="content">
+			<p>Your task is to read the first two pages of a chapter of a textbook. The letters move, simulating how someone with Dyslexia might see them. After you have completed reading the text, click start to take a timed quiz to test your understanding. </p>
+		</div>
+	</div>
+</div>
+    <div id="leftColumn">
+   
+ <h2> What is Autism Spectrum Disorder?</h2>
+ <p>
+     
+     <a href="https://www.tweaksforgeeks.com/brave-browser-captures-double-uses-in-a-year/">
+    Autism spectrum disorder (ASD) is a developmental disorder that affects communication and behavior. Although autism can be diagnosed at any age, it is described as a “developmental disorder” because symptoms generally appear in the first two years of life.<br><br>
+     </a> </p>
+        
+        
+ 
+    <a href="https://www.lingscars.com/"><iframe src="https://giphy.com/embed/KZjTXrgVAzDuOJJkMT" width="480" height="270" frameBorder="0" href=""></iframe></a>   
+    <p>
+
+
+    According to the Diagnostic and Statistical Manual of Mental Disorders (DSM-5), a guide created by the American Psychiatric Association used to diagnose mental disorders, people with ASD have:<br><br>
+     Difficulty with communication and interaction with other people
+     Restricted interests and repetitive behaviors<br>
+    Symptoms that affect the person’s ability to function in school, work, and other areas of life<br><br>
+    Autism is known as a “spectrum” disorder because there is wide variation in the type and severity of symptoms people experience.
+    ASD occurs in all ethnic, racial, and economic groups. Although ASD can be a lifelong disorder, treatments and services can improve a person’s symptoms and ability to function.
+    The American Academy of Pediatrics recommends that all children be screened for autism. All caregivers should talk to their child’s doctor about ASD screening or evaluation.<br><br>
+    <strong>What are the signs and symptoms of ASD?</strong><br><br>
+    People with ASD have difficulty with social communication and interaction and have restricted interests and repetitive behaviors. The list below gives some examples of the types of behaviors that are common in people diagnosed with ASD. Not all people with
+    ASD will have all behaviors, but most will have several of the behaviors listed below.<br><br>
+
+    Making little or inconsistent eye contact<br>
+    Having a tendency not to look at or listen to people<br>
+    Rarely sharing enjoyment of objects or activities by pointing at or showing things to others<br>
+    Failing to, or being slow to, respond to someone calling their name or to other<br>
+    verbal attempts to gain attention<br>
+    Having difficulties with the back and forth of conversation<br>
+    Often talking at length about a favorite subject without noticing that others are not interested or without giving others a chance to respond<br>
+    Having facial expressions, movements, and gestures that do not match what is being said<br>
+    Having an unusual tone of voice that may sound sing-song or flat and robot-like<br>
+    Having trouble understanding another person’s point of view or being unable to predict or understand other people’s actions<br><br>
+
+    <strong>Restrictive/repetitive behaviors may include:</strong><br><br>
+    Repeating certain behaviors or having unusual behaviors, such as repeating words or phrases (a behavior called echolalia)<br>
+    Having a lasting intense interest in certain topics, such as numbers, details, or facts<br>
+    Having overly focused interests, such as with moving objects or with parts of objects<br>
+    Getting upset by slight changes in a routine<br>
+    Being more sensitive or less sensitive than other people to sensory input, such as light, noise, clothing, or temperature<br>
+    People with ASD may also experience sleep problems and irritability. <br><br>
+
+    <strong>Although people with ASD experience many challenges, they may also have many strengths, including:</strong><br><br>
+     
+    Being able to learn things in detail and remember information for long periods of time<br>
+    Being strong visual and auditory learners<br>
+    Excelling in math, science, music, or art<br><br>
+
+    <strong>What are the causes and risk factors for ASD?</strong><br><br>
+
+    Researchers don’t know the exact causes of ASD, but studies suggest that genes can act together with influences from the environment to affect development in ways that lead to ASD. Although scientists are still trying to understand why some people develop ASD and others don’t, some factors that increase the risk of developing ASD include:<br><br>
+    Having a sibling with ASD<br>
+    Having older parents<br>
+    Having certain genetic conditions (For example, people with conditions such as Down syndrome, fragile X syndrome, and Rett syndrome are more likely than others to have ASD.)<br>
+    Being born with a very low birth weight<br>
+    Not everyone who has these risk factors develops ASD. 
+     
+</p>  
+    </div>
+        
+        <div id=rightcolumn>
+ 
+        
+        <img src="../resources/winterAd%20copy.png" class="imgAutism">
+        <img src="../resources/plantAd.png" class="imgAutism">
+        
+    </div>    
+        
+
+     
+        
+<div id="buttons">
+<a href="autism-quiz.htm" id="button">Start</a>
+ </div>
+
+</body>
+</html>

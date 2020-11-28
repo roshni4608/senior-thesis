@@ -15,6 +15,34 @@ body
     color:dimgrey;
 }
 
+#autismBody{
+    background-image: url("resources/pexels-dom-j-310452.jpg");
+
+}
+
+#rightColumn{
+    
+    width:50%;
+    float:right;
+}
+
+
+#leftColumn{
+     width:40%;
+    max-width: 1024px;
+    margin: 0 auto;
+    font-size: 100%;
+    float:left;
+    padding-left:10%;
+}
+
+#imgAutism{
+    width:50%;
+}
+
+
+
+
 #logo
 {   
 margin:3em;
@@ -320,6 +348,14 @@ progress[value]{
     height:25px;
     margin-bottom:-10px;
 }
+/* ----------------PROGRESS BAR-----------------------*/
+
+.imgAutism
+{
+    padding: 5%;
+    width:40%;
+}
+
 
 /* ----------------MODAL 2-----------------------*/
 
